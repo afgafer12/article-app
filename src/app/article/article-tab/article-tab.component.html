@@ -1,0 +1,28 @@
+<!-- {{status |json}} -->
+<ul ngbNav #posts="ngbNav" [(activeId)]="status" class="nav-tabs p-2">
+  <li ngbNavItem="publish" [destroyOnHide]="isNavDestroy">
+    <a ngbNavLink [routerLink]="'/article/tab'" [queryParams]="{ status: 'publish' }" class="nav-custom">
+      Published
+    </a>
+    <ng-template ngbNavContent>
+      <app-article-list *ngIf="status == 'publish'" [queryParams]="{status: status }"></app-article-list>
+    </ng-template>
+  </li>
+  <li ngbNavItem="draft" [destroyOnHide]="isNavDestroy">
+    <a ngbNavLink [routerLink]="'/article/tab'" [queryParams]="{ status: status}" class="nav-custom">
+      Draft
+    </a>
+    <ng-template ngbNavContent>
+      <app-article-list *ngIf="status == 'draft'" [queryParams]="{ status: status }"></app-article-list>
+    </ng-template>
+  </li>
+  <li ngbNavItem="trash" [destroyOnHide]="isNavDestroy">
+    <a ngbNavLink [routerLink]="'/article/tab'" [queryParams]="{ status: 'trash' }" class="nav-custom">
+      Trashed
+    </a>
+    <ng-template ngbNavContent>
+      <app-article-list *ngIf="status == 'trash'" [queryParams]="{ status: status }"></app-article-list>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="posts"></div>
