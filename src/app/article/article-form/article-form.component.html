@@ -1,0 +1,32 @@
+<!-- 
+  {{article |json}}
+<hr>
+{{articleForm.value |json}} 
+-->
+<p-toast></p-toast>
+<div class="card">
+  <div class="card-header">
+    Article
+  </div>
+  <div class="card-body">
+    <form [formGroup]="articleForm">
+      <div class="form-group mb-3">
+        <label for="title" class="form-control-label">title</label>
+        <input type="text" formControlName="title" id="title" class="form-control">
+      </div>
+      <div class="form-group mb-3">
+        <label for="category" class="form-control-label">category</label>
+        <input type="text" formControlName="category" id="category" class="form-control">
+      </div>
+      <div class="form-group mb-3">
+        <label for="content" class="form-control-label">content</label>
+        <textarea id="content" formControlName="content" class="form-control"></textarea>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-success me-1" (click)="submitArticle('publish')">Publish</button>
+        <button type="submit" class="btn btn-secondary" (click)="submitArticle('draft')">Draft</button>
+      </div>
+    </form>
+
+  </div>
+</div>
