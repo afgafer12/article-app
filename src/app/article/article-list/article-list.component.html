@@ -6,6 +6,15 @@
 
     <p-table
       [value]="articles"
+      [paginator]="true"
+      (onPage)="getArticles($event)"
+      [totalRecords]="page.pageTotalRecords ?? 0"
+      [first]="page.pageFirst"
+      [rows]="page.pageRows"
+      [lazy]="true"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="{first} - {last} of {totalRecords}"
+      [rowsPerPageOptions]="[2, 10, 100]"
     >
       <ng-template pTemplate="header" let-columns>
         <tr>
@@ -25,7 +34,7 @@
       </ng-template>
       <ng-template pTemplate="body" let-val let-i="rowIndex">
         <tr >
-          <td>{{i + 1}}</td>
+          <td>{{i + 1}}.</td>
           <td>
             {{val.title}}
           </td>

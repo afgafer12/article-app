@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Article } from 'src/app/shared/interfaces/article';
 import { ArticleService } from 'src/app/shared/services/article.service';
 
@@ -12,9 +13,15 @@ export class ArticleListComponent implements OnInit {
   vsbArtcleDialog: boolean = false;
   @Input() queryParams: any = {};
 
+  page: any = {
+    pageFirst: 0,
+    pageRows: 10,
+  };
+
   constructor(
     private articleSvc : ArticleService,
     private route: ActivatedRoute, private router: Router,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -30,23 +37,38 @@ export class ArticleListComponent implements OnInit {
   }
 
 
-  getArticles(){
-    this.articleSvc.getArticles(this.queryParams).subscribe(resp => {
+  getArticles(event = { first: 0, rows: this.page.pageRows }){
+    const page = event.first / event.rows + 1;
+    this.page.pageIndex = event.first / event.rows;
+    this.page.pageFirst = event.first;
+    const perPage = event.rows;
+    // alert(this.page.pageFirst);
+    // alert(event.first);
+
+    this.articleSvc.getArticlesPage(perPage, this.page.pageFirst, this.queryParams).subscribe(resp => {
       this.articles = resp.data;
-      console.log('a11');
-      console.log(this.articles);
+      this.page.pageTotalRecords = resp.meta?.total;
     }, err => {
     });
   }
 
   trashArticle(id: number){
-    this.router.navigate(['/article/tab'], {queryParams: { 
+    const data = { 
       status: 'trash', 
-    }});
-    // this.articleSvc.getArticles(this.queryParams).subscribe(resp => {
-    //   this.articles = resp.data;
-    // }, err => {
-    // });
+    };
+    this.articleSvc.updateArticleStatus(id, data).subscribe(resp => {
+      this.messageService.add({severity:'success', detail: 'success'});
+      this.router.navigate(['/article/tab'], {queryParams: data});
+    }, err => {
+      const errors = err.error.errors;
+      for (const field in errors) {
+        if (errors.hasOwnProperty(field)) {
+          errors[field].forEach((msg: string) => {
+              this.messageService.add({severity:'warn', detail: msg});
+          });
+        }
+      }
+    });
   }
 
 }

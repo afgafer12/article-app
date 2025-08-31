@@ -1,7 +1,7 @@
 <!-- {{status |json}} -->
 <ul ngbNav #posts="ngbNav" [(activeId)]="status" class="nav-tabs p-2">
   <li ngbNavItem="publish" [destroyOnHide]="isNavDestroy">
-    <a ngbNavLink [routerLink]="'/article/tab'" [queryParams]="{ status: 'publish' }" class="nav-custom">
+    <a ngbNavLink [routerLink]="'/'" [queryParams]="{ status: 'publish' }" class="nav-custom">
       Published
     </a>
     <ng-template ngbNavContent>
@@ -9,7 +9,7 @@
     </ng-template>
   </li>
   <li ngbNavItem="draft" [destroyOnHide]="isNavDestroy">
-    <a ngbNavLink [routerLink]="'/article/tab'" [queryParams]="{ status: status}" class="nav-custom">
+    <a ngbNavLink [routerLink]="'/'" [queryParams]="{ status: status}" class="nav-custom">
       Draft
     </a>
     <ng-template ngbNavContent>

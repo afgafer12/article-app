@@ -98,6 +98,14 @@ export class ArticleFormComponent implements OnInit {
         status: this.article.status, 
       }});
     }, err => {
+      const errors = err.error.errors;
+      for (const field in errors) {
+        if (errors.hasOwnProperty(field)) {
+          errors[field].forEach((msg: string) => {
+              this.messageService.add({severity:'warn', detail: msg});
+          });
+        }
+      }
     });
   }
 
