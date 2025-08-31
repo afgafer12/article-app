@@ -10,12 +10,15 @@ import { ArticleTabComponent } from './article-tab/article-tab.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ToastModule} from 'primeng/toast';
+import { ArticlePreviewComponent } from './article-preview/article-preview.component';
+import {PaginatorModule} from 'primeng/paginator';
 
 @NgModule({
   declarations: [
     ArticleListComponent,
     ArticleTabComponent,
     ArticleFormComponent,
+    ArticlePreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -27,10 +30,9 @@ import {ToastModule} from 'primeng/toast';
     NgbNavModule,
     TableModule,
     ToastModule,
+    PaginatorModule,
   ],
   exports: [
-    ArticleListComponent,
-    ArticleTabComponent,
   ]
 })
 export class ArticleModule { }

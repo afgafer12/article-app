@@ -1,0 +1,15 @@
+<br>
+<div *ngFor="let val of articles">
+  <div class="card">
+    <div class="card-header">
+      {{val.title}}
+    </div>
+    <div class="card-body">
+      {{val.content}}
+    </div>
+  </div>
+  <br>
+  
+</div>
+<p-paginator [first]="page.pageFirst" [rows]="page.pageRows" [totalRecords]="page.pageTotalRecords ?? 0" 
+(onPageChange)="getArticles($event)" [rowsPerPageOptions]="[2, 10,100]" [showPageLinks]="true"></p-paginator>

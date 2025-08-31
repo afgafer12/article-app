@@ -36,7 +36,6 @@ export class ArticleListComponent implements OnInit {
     }
   }
 
-
   getArticles(event = { first: 0, rows: this.page.pageRows }){
     const page = event.first / event.rows + 1;
     this.page.pageIndex = event.first / event.rows;

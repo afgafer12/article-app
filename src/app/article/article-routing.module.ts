@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleTabComponent } from './article-tab/article-tab.component';
+import { ArticlePreviewComponent } from './article-preview/article-preview.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'form',
     component: ArticleFormComponent,
+  },
+  {
+    path: 'preview',
+    component: ArticlePreviewComponent,
   },
   {
     path: ':id',
