@@ -1,0 +1,49 @@
+<!-- <app-article-form></app-article-form> -->
+<!-- {{articles |json}}
+{{queryParams |json}} -->
+<div class="card">
+  <div class="card-body">
+
+    <p-table
+      [value]="articles"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th>
+            No.
+          </th>
+          <th>
+            Title
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Action
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-val let-i="rowIndex">
+        <tr >
+          <td>{{i + 1}}</td>
+          <td>
+            {{val.title}}
+          </td>
+          <td>
+            {{val.category}}
+          </td>
+          <td>
+            <a [routerLink]="'/article/'+val.id" class="btn btn-primary" title="edit">
+              <i class="pi pi-pencil"></i>
+            </a>
+            <button type="button" class="btn btn-danger" (click)="trashArticle(val.id)" title="delete">
+              <i class="pi pi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    
+  </div>
+</div>
+
