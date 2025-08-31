@@ -1,6 +1,11 @@
 # ArticleApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.17.
+## Environtment
+- node versi 16.20.2
+- npm versi 8.19.4
+- angular-cli versi 12.2.17.
+
+
 
 ## Development server
 
